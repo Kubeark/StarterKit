@@ -71,30 +71,12 @@
 	.site-layout-bg {
 		padding: $offset-header;
 
-		&.noArrow {
-			&:after {
-				display: none;
-			}
-		}
-
 		&.dashboard {
 			padding: 0;
 		}
 
 		&.pages {
 			padding: $offset-header;
-		}
-
-		&:after {
-			content: '';
-			position: absolute;
-			top: 25px;
-			left: 0;
-			width: 0;
-			height: 0;
-			border-style: solid;
-			border-width: 20px 0 20px 29px;
-			z-index: 1;
 		}
 	}
 }
