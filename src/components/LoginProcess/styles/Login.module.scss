@@ -1,0 +1,245 @@
+// ******************************
+// Import scss files you need!!!
+// ******************************
+
+@import '../../../../styles/_base';
+@import '../../../../styles/config';
+
+// ******************************
+// end of the imported scss files
+// ******************************
+
+.login-page {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+
+	&.init-page {
+		.login-box {
+			width: 800px;
+			flex-direction: column;
+		}
+	}
+
+	.logo {
+		display: flex;
+		position: absolute;
+		top: 4%;
+	}
+
+	.steps {
+		display: flex;
+		margin: $offset-xxl 0;
+		padding: $offset-xxl;
+
+		.step {
+			:global(.ant-steps-icon) {
+				font-size: $large !important;
+			}
+
+			:global(.ant-steps-item-title) {
+				font-size: $small !important;
+			}
+		}
+	}
+
+	.login-box {
+		display: flex;
+		justify-content: space-between;
+		flex-direction: row-reverse;
+		max-width: 1400px;
+		//background-color: white;
+		//box-shadow: 0 0 40px rgb(0 0 0 / 16%);
+		overflow: hidden;
+		margin: 0 auto;
+		border-radius: 12px;
+		z-index: 2;
+
+		:global(.ant-form-item-label > label) {
+			color: initial;
+		}
+
+		:global(.ant-input-affix-wrapper),
+		:global(.ant-input) {
+			background: transparent;
+			color: rgb(85 85 85);
+			border-color: rgb(239 239 239);
+		}
+
+		:global(.ant-btn.ant-btn-default) {
+			color: rgb(0 0 0 / 85%);
+			border: 1px solid #d9d9d9;
+			background: #fff;
+		}
+	}
+
+	.illustration-wrapper {
+		position: relative;
+		min-width: 500px;
+		min-height: 100%;
+
+		.img {
+			background: black;
+		}
+	}
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+}
+
+
+.card {
+	width: 400px;
+	border-radius: 8px;
+	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card:first-child {
+	margin-right: 10px;
+}
+
+.card:last-child {
+	margin-left: 10px;
+}
+
+.card-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.logo {
+	display: block;
+	margin: 0 auto;
+	width: 200px;
+}
+
+.release {
+	margin-bottom: 8px;
+}
+
+.loginButton {
+	width: 100%;
+}
+
+.uploadArea {
+	display: flex;
+	flex: auto;
+	align-items: center;
+	justify-content: center;
+	margin-top: $offset-xxl;
+	width: 100%;
+
+	& > span {
+		display: flex;
+		flex: auto;
+	}
+
+	.upload {
+		display: flex;
+		flex: auto;
+		width: 100%;
+		padding: $offset-xxl 0;
+
+		.icon {
+			font-size: $header-l;
+		}
+	}
+}
+
+.login-form {
+	//flex: 1 0 100%;
+	//min-height: 500px;
+	//min-width: 600px;
+	width: 100%;
+	padding: 40px 40px;
+
+	p {
+		margin-bottom: 30px;
+
+		&.form-title {
+			color: #333;
+			font-family: 'Josefin Sans', sans-serif;
+			font-size: 42px;
+			font-weight: bold;
+			line-height: 1;
+			margin-bottom: 0;
+		}
+	}
+}
+
+.alert {
+	position: absolute;
+	top: 5%;
+	left: 20%;
+	width: 60%;
+}
+
+.title {
+	margin-top: 60px;
+	text-align: center;
+	margin-bottom: 60px !important;
+	color: $primary-color !important;
+	font-size: $title;
+}
+
+.groupBtn {
+	display: flex;
+	align-content: center;
+	justify-content: space-between;
+
+	&.right {
+		justify-content: flex-end;
+	}
+
+	&.center {
+		justify-content: center;
+	}
+}
+
+.btnLink {
+	display: flex;
+	flex: auto;
+	align-items: center;
+	margin-top: 60px;
+}
+
+@media screen and (max-width: 1023px) {
+	.login-box {
+		flex-direction: column;
+		box-shadow: none;
+	}
+
+	.illustration-wrapper {
+		max-width: 100%;
+		min-height: auto;
+	}
+
+	#login-form {
+		max-width: 100%;
+	}
+}
+
+.version {
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	bottom: 2%;
+	left: 50px;
+
+	.release {
+		font-size: $regular;
+		font-weight: $font-regular;
+		color: $white;
+
+		span {
+			font-weight: $font-semibold;
+		}
+	}
+}

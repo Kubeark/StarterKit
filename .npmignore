@@ -1,0 +1,11 @@
+node_modules
+.idea
+.env.local
+obj
+bin
+*.vs
+*.js.map
+*.log
+*.csproj*
+*.njsproj*
+*.tmp

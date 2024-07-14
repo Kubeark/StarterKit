@@ -1,0 +1,24 @@
+// ******************************
+// ----- Config file -----
+// ******************************
+
+@import 'base';
+@import 'themes/variables';
+@import './fonts/default';
+
+// A map of breakpoints.
+$breakpoints: (
+  xs: 768px,
+  sm: 1024px,
+  md: 1200px,
+  lg: 1550px,
+  xl: 1800px,
+  xxl: 2200px
+);
+
+//  -------- THEME --------
+
+@import './themes/utilities';
+@import './themes/colors';
+@import './themes/typography';
+@import './themes/layout';

@@ -1,0 +1,13 @@
+
+# Nextjs build directory
+.next
+
+# Intellij IDEA project files
+.idea
+
+# Git data
+.git
+
+# Docker files
+*Dockerfile*
+*docker-compose*

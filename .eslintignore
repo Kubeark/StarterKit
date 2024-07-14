@@ -1,0 +1,27 @@
+# dependencies
+node_modules/
+.yarn/
+
+# production
+build/
+public/
+
+
+# ide
+.vscode/
+.next/
+.idea/
+cypress/
+
+# configs
+next.config.js
+jest.config.js
+next-i18next.config.js
+
+# protobuf
+protos/
+
+
+# ignore specific files
+*.js
+*.jsx

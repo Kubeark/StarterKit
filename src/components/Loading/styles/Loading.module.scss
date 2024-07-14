@@ -1,0 +1,180 @@
+// ******************************
+// Import scss files you need!!!
+// ******************************
+
+@import '../../../../styles/_base';
+@import '../../../../styles/config';
+
+// ******************************
+// end of the imported scss files
+// ******************************
+
+.loading-spinner {
+	position: absolute;
+	align-items: center;
+	justify-content: center;
+	box-sizing: border-box;
+	display: flex;
+	left: 0;
+	right: 0;
+	margin: auto;
+	top: 30%;
+
+	@include respond-below(md) {
+		left: 0;
+		right: 0;
+		margin: auto;
+		top: 30%;
+	}
+
+	p {
+		margin: 16px 0 0;
+		text-align: center;
+	}
+}
+
+.loading {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	&.hasText {
+		min-width: 250px;
+		padding: 40px 50px;
+		border: 1px solid transparentize($border-color, 0.5);
+	}
+}
+
+.loader {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin: $offset-xl $offset-xxl;
+
+	//position: absolute;
+	//top: calc(50% - 32px);
+	//left: calc(50% - 32px);
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	perspective: 800px;
+
+	&.small {
+		width: 32px;
+		height: 32px;
+	}
+
+	&.large {
+		width: 86px;
+		height: 86px;
+	}
+
+	.inner {
+		position: absolute;
+		box-sizing: border-box;
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+
+		&.one {
+			left: 0;
+			top: 0;
+			animation: rotate-one 1.3s linear infinite;
+			border-bottom: 3px solid #efeffa;
+		}
+
+		&.two {
+			right: 0;
+			top: 0;
+			animation: rotate-two 1.3s linear infinite;
+			border-right: 3px solid #efeffa;
+		}
+
+		&.three {
+			right: 0;
+			bottom: 0;
+			animation: rotate-three 1.3s linear infinite;
+			border-top: 3px solid #efeffa;
+		}
+	}
+}
+
+@keyframes rotate-one {
+	0% {
+		transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+		border-bottom-color: orange;
+	}
+
+	50% {
+		transform: rotateX(35deg) rotateY(-45deg) rotateZ(180deg);
+		border-bottom-color: purple;
+	}
+
+	100% {
+		transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+		border-bottom-color: orange;
+	}
+}
+
+@keyframes rotate-two {
+	0% {
+		transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+		border-right-color: yellow;
+	}
+
+	50% {
+		transform: rotateX(50deg) rotateY(10deg) rotateZ(180deg);
+		border-right-color: green;
+	}
+
+	100% {
+		transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+		border-right-color: yellow;
+	}
+}
+
+@keyframes rotate-three {
+	0% {
+		transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+		border-top-color: red;
+	}
+
+	50% {
+		transform: rotateX(35deg) rotateY(55deg) rotateZ(180deg);
+		border-top-color: blue;
+	}
+
+	100% {
+		transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+		border-top-color: red;
+	}
+}
+
+.text {
+	font-size: 20px;
+
+	&.white {
+		color: transparentize($row-color, 0.5);
+	}
+}
+
+.icon {
+	margin-bottom: $offset-xxl;
+
+	&.error {
+		color: $red;
+	}
+
+	&.warning {
+		color: $orange;
+	}
+
+	&.success {
+		color: $green;
+	}
+
+	&.ban {
+		color: $black;
+	}
+}

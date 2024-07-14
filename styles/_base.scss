@@ -1,0 +1,282 @@
+//*****
+//*
+// Base Partials
+//*
+//*****
+
+//Mixins you need to use are:
+
+//@include cover-background;
+//@include contain-background;
+//@include placeholder;
+//@include keyframes;
+//@include list-flat;
+//@include overflow-ellipsis;
+
+/// Adds a browser prefix to the property
+/// @param {*} $property Property
+/// @param {*} $value Value
+
+@mixin css3-prefix($property, $value) {
+  -webkit-#{$property}: #{$value};
+  -ms-#{$property}: #{$value};
+  #{$property}: #{$value};
+}
+
+@mixin outline-radius($radius: 5px) {
+  @include css3-prefix('outline-radius', $radius);
+}
+
+///* ------------------------------------------------------------------------------- */
+
+@function color($color-name) {
+  @return var(--#{$color-name});
+}
+
+@function font($font-size) {
+  @return var(--#{$font-size});
+}
+
+///**************
+// Placeholder property
+//**************/
+
+@mixin optional-at-root($sel) {
+  @at-root #{if(not &, $sel, selector-append(&, $sel))} {
+    @content;
+  }
+}
+
+@mixin placeholder {
+  @include optional-at-root('&::-webkit-input-placeholder') {
+    @content;
+  }
+
+  @include optional-at-root('&::-ms-input-placeholder') {
+    @content;
+  }
+
+  @include optional-at-root('&:-ms-input-placeholder') {
+    @content;
+  }
+}
+
+///* ------------------------------------------------------------------------------- */
+
+///**************
+// Background property
+// **************/
+
+@mixin cover-background($img-uri, $background-top: center, $background-left: center) {
+  background: url($img-uri) no-repeat $background-top $background-left;
+  background-size: cover;
+}
+
+@mixin contain-background($img-uri, $background-top: center, $background-left: center) {
+  background: url($img-uri) no-repeat $background-top $background-left;
+  background-size: contain;
+}
+
+///* ------------------------------------------------------------------------------- */
+
+///**************
+// Animations property
+// **************/
+
+// duration     Specifies how many seconds or milliseconds an animation takes to complete one cycle. Default 0
+// delay        Specifies when the animation will start. Default 0
+// function     Describes how the animation will progress over one cycle of its duration. Default "ease"
+// count        Specifies the number of times an animation is played. Default 1
+// fill-mode    Specifies if the effects of an animation are before the animation starts and after it ends.
+// visibility   Determines whether or not a transformed element is visible when it is not facing the screen.
+
+$countDefault: 1 !default;
+$durationDefault: 1s !default;
+$delayDefault: 0s !default;
+$functionDefault: ease !default;
+$fillDefault: both;
+$visibilityDefault: hidden !default;
+
+@mixin count($count: 1) {
+  animation-iteration-count: $count;
+}
+
+@mixin duration($duration: 1s) {
+  animation-duration: $duration;
+}
+
+@mixin delay($delay: 0.2s) {
+  animation-delay: $delay;
+}
+
+@mixin function($function: ease) {
+  animation-timing-function: $function;
+}
+
+@mixin fill-mode($fill: both) {
+  animation-fill-mode: $fill;
+}
+
+@mixin visibility($visibility: hidden) {
+  backface-visibility: $visibility;
+}
+
+@mixin transform($property) {
+  transform: $property;
+}
+
+@mixin transform-origin($transform-origin: center center) {
+  transform-origin: $transform-origin;
+}
+
+@mixin transform-style($transform-style: flat) {
+  transform-style: $transform-style;
+}
+
+@mixin animation-name($animation-name) {
+  animation-name: $animation-name;
+}
+
+/// Keyframes
+/// @param {*} $animation-name - Animation name
+/// @content [Animation css]
+
+@mixin keyframes($animation-name) {
+  @keyframes #{$animation-name} {
+    @content;
+  }
+  @keyframes #{$animation-name} {
+    @content;
+  }
+  @keyframes #{$animation-name} {
+    @content;
+  }
+  @keyframes #{$animation-name} {
+    @content;
+  }
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+/// Animation
+/// @param {*} $str - name duration timing-function delay iteration-count direction fill-mode play-state ([http://www.w3schools.com/cssref/css3_pr_animation.asp](http://www.w3schools.com/cssref/css3_pr_animation.asp))
+/// @require {mixin} css3-prefix
+
+@mixin animation($str) {
+  @include css3-prefix('animation', $str);
+}
+
+///* ------------------------------------------------------------------------------- */
+
+///**************
+// List Style Reset
+// **************/
+
+@mixin list-flat {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  //overflow:hidden;
+
+  li {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
+}
+
+///* ------------------------------------------------------------------------------- */
+
+///**************
+// Text Overflow - Ellipsis
+// **************/
+
+@mixin overflow-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+///* ------------------------------------------------------------------------------- */
+
+///* ------------------------------------------------------------------------------- */
+
+///**************
+// Media Queries
+// **************/
+
+// A map of breakpoints.
+$breakpoints: (
+  xs: 768px,
+  sm: 1099px,
+  md: 1280px,
+  lg: 1550px,
+  xl: 1800px,
+  xxl: 2200px
+);
+
+@mixin respond-above($breakpoint) {
+  // If the breakpoint exists in the map.
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Get the breakpoint value.
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    // Write the media query.
+    @media (min-width: $breakpoint-value) {
+      @content;
+    }
+
+    // If the breakpoint doesn't exist in the map.
+  } @else {
+    // Log a warning.
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+@mixin respond-below($breakpoint) {
+  // If the breakpoint exists in the map.
+  @if map-has-key($breakpoints, $breakpoint) {
+    // Get the breakpoint value.
+    $breakpoint-value: map-get($breakpoints, $breakpoint);
+
+    // Write the media query.
+    @media (max-width: ($breakpoint-value - 1)) {
+      @content;
+    }
+
+    // If the breakpoint doesn't exist in the map.
+  } @else {
+    // Log a warning.
+    @warn 'Invalid breakpoint: #{$breakpoint}.';
+  }
+}
+
+///* ------------------------------------------------------------------------------- */
+
+///**************
+// Lighten or Darken based on lightness
+// **************/
+
+@function check-lightness($color, $per: false) {
+  @if $per != false {
+    @if lightness($color) > 50 {
+      @return darken($color, $per) // Lighter color - darken
+;
+    } @else {
+      @return lighten($color, $per) // Darker color - Lighten
+;
+    }
+  } @else {
+    @if lightness($color) > 50 {
+      @return darken($color, 40%) // Lighter color - darken
+;
+    } @else {
+      @return lighten($color, 40%) // Darker color - Lighten
+;
+    }
+  }
+}
+
+///* ------------------------------------------------------------------------------- */

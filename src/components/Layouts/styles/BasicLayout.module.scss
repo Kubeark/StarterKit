@@ -1,0 +1,106 @@
+// ******************************
+// Import scss files you need!!!
+// ******************************
+
+@import '../../../../styles/_base';
+@import '../../../../styles/config';
+
+// ******************************
+// end of the imported scss files
+// ******************************
+
+.layout {
+	transition: all 0.2s ease-in-out 0s;
+
+	.icon {
+		font-size: $semi-large !important;
+	}
+
+	.site-layout {
+		display: flex;
+		flex-direction: column;
+		flex: auto;
+		width: 100%;
+		transition: all 0.2s ease-in-out 0s;
+		min-height: 100vh;
+
+		&.expanded {
+			margin-left: $menu-expanded;
+		}
+
+		&.collapsed {
+			margin-left: $menu-collapsed;
+		}
+	}
+
+	.left {
+		display: flex;
+		align-items: center;
+		margin-left: #{$offset-xxl};
+
+		.logo {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 64px !important;
+			width: 280px;
+			margin-left: -#{$offset-l};
+			margin-right: $offset-xxxl;
+		}
+
+		.title {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-left: $offset-xxl;
+			font-size: $title-l;
+			text-transform: capitalize;
+			margin-bottom: 0;
+		}
+	}
+
+	.right {
+		display: flex;
+		align-items: center;
+
+		.divider {
+			height: 2em;
+		}
+	}
+
+	.site-layout-bg {
+		padding: $offset-header;
+
+		&.noArrow {
+			&:after {
+				display: none;
+			}
+		}
+
+		&.dashboard {
+			padding: 0;
+		}
+
+		&.pages {
+			padding: $offset-header;
+		}
+
+		&:after {
+			content: '';
+			position: absolute;
+			top: 25px;
+			left: 0;
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 20px 0 20px 29px;
+			z-index: 1;
+		}
+	}
+}
+.btnTheme {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+}
