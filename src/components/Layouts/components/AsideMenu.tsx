@@ -1,17 +1,14 @@
 import { faGridHorizontal, faUsers } from '@fortawesome/pro-duotone-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Layout, Menu, MenuProps } from 'antd';
+import { Menu, MenuProps } from 'antd';
 import { useRouter } from 'next/router';
 import React from 'react';
-import styled from 'styled-components';
 import BrandLogo from '../../../../public/media/logo-dark.png';
 import BrandLightLogo from '../../../../public/media/logo-light.png';
 import BrandSmLogo from '../../../../public/media/logo-sm.png';
 
-import styles from '../styles/AsideMenu.module.scss';
 import { usePermissions } from '@/recoil/selectors/permissionSelector';
-
-const { Sider } = Layout;
+import {LayoutAsideMenu, StyleSider} from "@/ui/GlobalStyles/Menu";
 
 function getPathName(path: string) {
 	const segments = path.split('/'); // Remove empty segments
@@ -59,17 +56,17 @@ const AsideMenu = (props: IAsideMenuProps) => {
 			type: 'group',
 			style: useHandlePermissions(['global_admin']),
 			label: (
-				<div className={styles['section-wrapper']}>
-					<span className={styles.title}>Dashboard</span>
+				<div className="section-wrapper">
+					<span className="aside-title">Dashboard</span>
 				</div>
 			),
-			className: styles.category,
+			className: 'category',
 			children: [
 				{
 					key: 'dashboard',
 					title: 'Dashboard',
 					label: 'Dashboard',
-					icon: <FontAwesomeIcon icon={faGridHorizontal} className={styles.icon} title="dashboard" />,
+					icon: <FontAwesomeIcon icon={faGridHorizontal} className="aside-icon" title="dashboard" />,
 					onClick: () =>
 						router.push({ pathname: '/' }, undefined, {
 							shallow: true
@@ -87,20 +84,18 @@ const AsideMenu = (props: IAsideMenuProps) => {
 			type: 'group',
 			style: useHandlePermissions(['global_admin'], true),
 			label: (
-				<div className={styles['section-wrapper']}>
-					<span title="User Management" className={styles.title}>
-						User Management
-					</span>
+				<div className="section-wrapper">
+					<span className="aside-title">User Management</span>
 				</div>
 			),
-			className: styles.category,
+			className: 'category',
 			children: [
 				{
 					key: 'users',
 					title: 'Users',
 					label: 'Users',
 					style: useHandlePermissions('global_admin', undefined),
-					icon: <FontAwesomeIcon icon={faUsers} className={styles.icon} title="users" />,
+					icon: <FontAwesomeIcon icon={faUsers} className="aside-icon" title="users" />,
 					onClick: () =>
 						router.push({ pathname: '/users' }, undefined, {
 							shallow: true
@@ -109,18 +104,9 @@ const AsideMenu = (props: IAsideMenuProps) => {
 			]
 		}
 	];
-	const StyleSider = styled(Sider)`
-		position: fixed;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		z-index: 1000;
-		border-right: 1px solid ${({ theme }) => theme.components.Menu.menuBorderColor};
-		background: ${({ theme }) => theme.components.Menu.itemBg} !important;
-	`;
 
 	return (
-		<div className={`${styles.layout}`}>
+		<LayoutAsideMenu>
 			<StyleSider trigger={null} collapsible width={props.isCollapsed ? 100 : 280} collapsed={props.isCollapsed} collapsedWidth="100">
 				<div className={`${props.isCollapsed ? 'sider-collapsed' : ''} logo ant-mx-auto`}>
 					<img
@@ -146,7 +132,7 @@ const AsideMenu = (props: IAsideMenuProps) => {
 					items={items}
 				/>
 			</StyleSider>
-		</div>
+		</LayoutAsideMenu>
 	);
 };
 

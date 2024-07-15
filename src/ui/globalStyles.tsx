@@ -2,6 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 import useCustomStyles from '@/ui/CustomStyles';
 import { ThemeType } from '@/models/themes';
 import { MenuStyles } from '@/ui/GlobalStyles/Menu';
+import {LoginPageStyles} from "@/ui/GlobalStyles/LoginPage";
 
 const customStyles = useCustomStyles();
 
@@ -10,6 +11,7 @@ export const GlobalStyles = createGlobalStyle<{ theme: ThemeType }>`
 
     //  -------------- Import CSS files  ----------------
 	${MenuStyles}
+	${LoginPageStyles}
 
     //  -------------- Generic ----------------
 

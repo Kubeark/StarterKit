@@ -9,3 +9,9 @@ export interface IdPLogin {
 		state: string;
 	};
 }
+
+
+export interface IFormLoginValues {
+	username: string;
+	password: string;
+}
